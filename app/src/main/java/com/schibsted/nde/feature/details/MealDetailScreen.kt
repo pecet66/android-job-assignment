@@ -1,6 +1,12 @@
 package com.schibsted.nde.feature.details
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
@@ -14,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.schibsted.nde.R
 import com.schibsted.nde.feature.common.MealImage
-import com.schibsted.nde.model.MealResponse
+import com.schibsted.nde.model.MealModel
 import com.schibsted.nde.ui.typography
 
 @Composable
@@ -44,19 +50,18 @@ fun MealDetailScreen(
 }
 
 @Composable
-fun MealDetailContent(padding: PaddingValues, meal: MealResponse) {
+fun MealDetailContent(padding: PaddingValues, meal: MealModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(padding)
+            .padding(16.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         MealImage(
             thumb = meal.strMealThumb,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(240.dp)
+            modifier = Modifier.size(240.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -76,7 +81,7 @@ fun MealDetailContent(padding: PaddingValues, meal: MealResponse) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = stringResource(R.string.cooking_steps),
+            text = meal.strInstructions,
             style = typography.body1,
             modifier = Modifier.align(Alignment.Start)
         )

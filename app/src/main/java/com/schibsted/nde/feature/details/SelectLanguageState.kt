@@ -1,10 +1,10 @@
 package com.schibsted.nde.feature.details
 
-import com.schibsted.nde.model.MealResponse
+import com.schibsted.nde.model.MealModel
 
 data class MealDetailsState(
     val loadingContent: Boolean = false,
-    val mealDetails: MealResponse? = null
+    val mealDetails: MealModel? = null
 )
 
 sealed interface MealDetailsEvent {

@@ -1,11 +1,11 @@
 package com.schibsted.nde.usecase
 
 import com.schibsted.nde.data.MealsRepository
-import com.schibsted.nde.model.MealResponse
+import com.schibsted.nde.model.MealModel
 
 class GetMealDetailsUseCase(
     private val mealsRepository: MealsRepository
 ) {
 
-    suspend operator fun invoke(mealId: String): MealResponse? = mealsRepository.getMeals().find { it.idMeal == mealId }
+    suspend operator fun invoke(mealId: String): MealModel? = mealsRepository.getMeals(false).find { it.mealId == mealId }
 }

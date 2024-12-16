@@ -25,7 +25,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -48,7 +47,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
@@ -60,7 +58,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.schibsted.nde.feature.common.MealImage
-import com.schibsted.nde.model.MealResponse
+import com.schibsted.nde.model.MealModel
 import com.schibsted.nde.ui.typography
 import kotlinx.coroutines.launch
 
@@ -205,14 +203,14 @@ fun MealsScreenContent(viewModel: MealsViewModel) {
 }
 
 @Composable
-fun MealRowComposable(viewModel: MealsViewModel, meal: MealResponse) {
+fun MealRowComposable(viewModel: MealsViewModel, meal: MealModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colors.surface)
             .clip(RoundedCornerShape(4.dp))
             .padding(16.dp)
-            .clickable { viewModel.onEvent(MealsViewEvent.NavigateToDetails(meal.idMeal)) }
+            .clickable { viewModel.onEvent(MealsViewEvent.NavigateToDetails(meal.mealId)) }
     ) {
         MealImage(meal.strMealThumb, Modifier.size(64.dp))
         Column(

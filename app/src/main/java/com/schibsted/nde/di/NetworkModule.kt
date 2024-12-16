@@ -1,6 +1,7 @@
 package com.schibsted.nde.di
 
 import com.schibsted.nde.api.BackendApi
+import com.schibsted.nde.api.MealsNetworkDataSource
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -25,4 +26,8 @@ object NetworkModule {
         .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
         .build()
         .create(BackendApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideNetworkDataSource(backendApi: BackendApi): MealsNetworkDataSource = MealsNetworkDataSource((backendApi))
 }

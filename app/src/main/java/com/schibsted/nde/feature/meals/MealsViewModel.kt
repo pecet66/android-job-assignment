@@ -30,7 +30,7 @@ class MealsViewModel @Inject constructor(
     fun loadMeals() {
         viewModelScope.launch {
             _state.emit(_state.value.copy(isLoading = true))
-            val meals = mealsRepository.getMeals()
+            val meals = mealsRepository.getMeals(false)
             _state.emit(_state.value.copy(meals = meals, filteredMeals = meals))
             _state.emit(_state.value.copy(isLoading = false))
         }
@@ -40,7 +40,7 @@ class MealsViewModel @Inject constructor(
         viewModelScope.launch {
             val filteredMeals = if (query?.isNotBlank() == true) {
                 _state.value.meals.filter {
-                    it.strMeal.lowercase().contains(query?.lowercase() ?: "")
+                    it.strMeal.lowercase().contains(query.lowercase() ?: "")
                 }
             } else {
                 _state.value.meals
