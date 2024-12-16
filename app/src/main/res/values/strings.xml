@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Android Job Assignment</string>
+    <string name="cooking_instructions">Cooking Instructions:</string>
+    <string name="cooking_steps">Kroki do przygotowania potrawy...</string>
 </resources>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -169,7 +170,7 @@ fun MealsScreenContent(viewModel: MealsViewModel) {
                             LazyColumn(modifier = Modifier.fillMaxSize()) {
                                 items(state.filteredMeals) { meal ->
                                     Divider(thickness = 8.dp)
-                                    MealRowComposable(meal)
+                                    MealRowComposable(viewModel, meal)
                                 }
                             }
                         } else {
@@ -191,7 +192,7 @@ fun MealsScreenContent(viewModel: MealsViewModel) {
                                             0.dp
                                         )
                                     ) {
-                                        MealRowComposable(meal)
+                                        MealRowComposable(viewModel, meal)
                                     }
                                 }
                             }
@@ -204,13 +205,14 @@ fun MealsScreenContent(viewModel: MealsViewModel) {
 }
 
 @Composable
-fun MealRowComposable(meal: MealResponse) {
+fun MealRowComposable(viewModel: MealsViewModel, meal: MealResponse) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colors.surface)
             .clip(RoundedCornerShape(4.dp))
             .padding(16.dp)
+            .clickable { viewModel.onEvent(MealsViewEvent.NavigateToDetails(meal.idMeal)) }
     ) {
         MealImage(meal.strMealThumb, Modifier.size(64.dp))
         Column(
