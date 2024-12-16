@@ -51,12 +51,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.schibsted.nde.R
 import com.schibsted.nde.feature.common.MealImage
 import com.schibsted.nde.model.MealModel
 import com.schibsted.nde.ui.typography
@@ -85,7 +87,7 @@ fun MealsScreen(viewModel: MealsViewModel) {
             TextField(
                 value = query,
                 onValueChange = { query = it },
-                label = { Text("Query") },
+                label = { Text(stringResource(R.string.query)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 keyboardActions = KeyboardActions(onSearch = {
@@ -106,7 +108,7 @@ fun MealsScreen(viewModel: MealsViewModel) {
                         modalBottomSheetState.hide()
                     }
                 }) {
-                    Text(text = "Clear")
+                    Text(text = stringResource(R.string.clear))
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Button(onClick = {
@@ -115,7 +117,7 @@ fun MealsScreen(viewModel: MealsViewModel) {
                         modalBottomSheetState.hide()
                     }
                 }) {
-                    Text(text = "Search")
+                    Text(text = stringResource(R.string.search))
                 }
             }
         }
@@ -124,7 +126,7 @@ fun MealsScreen(viewModel: MealsViewModel) {
             topBar = {
                 TopAppBar(
                     title = {
-                        Text("Food App")
+                        Text(stringResource(R.string.food_app))
                     },
                     actions = {
                         IconButton(onClick = {
@@ -161,7 +163,7 @@ fun MealsScreenContent(viewModel: MealsViewModel) {
             ) {
                 if (!state.isLoading) {
                     if (state.filteredMeals.isEmpty()) {
-                        Text(text = "No meals found")
+                        Text(text = stringResource(R.string.no_meals_found))
                     } else {
                         val orientation = LocalConfiguration.current.orientation
                         if (orientation == Configuration.ORIENTATION_PORTRAIT) {

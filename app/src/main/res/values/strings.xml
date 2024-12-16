@@ -2,4 +2,9 @@
     <string name="app_name">Android Job Assignment</string>
     <string name="cooking_instructions">Cooking Instructions:</string>
     <string name="cooking_steps">Kroki do przygotowania potrawy...</string>
+    <string name="query">Query</string>
+    <string name="clear">Clear</string>
+    <string name="search">Search</string>
+    <string name="food_app">Food App</string>
+    <string name="no_meals_found">No meals found</string>
 </resources>
